@@ -11,10 +11,10 @@ interface Prop {
   name: string
 }
 
-const Icon = (prop: Prop) => {
+const Icon = (props: Prop) => {
   return (
     <svg className="icon">
-      <use xlinkHref={`#${prop.name}`}/>
+      <use xlinkHref={`#${props.name}`}/>
     </svg>
   );
 };

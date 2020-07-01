@@ -4,59 +4,53 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import styled from 'styled-components';
-import Nav from './components/Nav';
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const Main = styled.div`
-  flex-grow: 1;
-  border: 1px solid blueviolet;
-  overflow: auto;
-`;
+import Layout from './components/Layout';
 
 
 function App() {
   return (
     <Router>
-      <Wrapper>
-        <Main>
-          <Switch>
-            <Route path="/money">
-              <Money/>
-            </Route>
-            <Route path="/tags">
-              <Tags/>
-            </Route>
-            <Route path="/statistics">
-              <Statistics/>
-            </Route>
-            <Route path="/" component={Money} exact/>
-            <Route path="*">
-              <NoMatch/>
-            </Route>
-          </Switch>
-        </Main>
-        <Nav/>
-      </Wrapper>
+      <Switch>
+        <Route path="/money">
+          <Money/>
+        </Route>
+        <Route path="/tags">
+          <Tags/>
+        </Route>
+        <Route path="/statistics">
+          <Statistics/>
+        </Route>
+        <Route path="/" component={Money} exact/>
+        <Route path="*">
+          <NoMatch/>
+        </Route>
+      </Switch>
     </Router>
   );
 }
 
 function Money() {
-  return <h2>记账</h2>;
+  return (
+    <Layout>
+      <h2>记账</h2>
+    </Layout>
+  );
 }
 
 function Tags() {
-  return <h2>标签</h2>;
+  return (
+    <Layout>
+      <h2>标签</h2>
+    </Layout>
+  );
 }
 
 function Statistics() {
-  return <h2>统计</h2>;
+  return (
+    <Layout>
+      <h2>统计</h2>
+    </Layout>
+  );
 }
 
 function NoMatch() {
