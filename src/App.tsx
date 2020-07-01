@@ -2,44 +2,47 @@ import React from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
+import styled from 'styled-components';
+import Nav from './components/Nav';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const Main = styled.div`
+  flex-grow: 1;
+  border: 1px solid blueviolet;
+  overflow: auto;
+`;
+
 
 function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/money">记账</Link>
-            </li>
-            <li>
-              <Link to="/tags">标签</Link>
-            </li>
-            <li>
-              <Link to="/statistics">统计</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/money">
-            <Money/>
-          </Route>
-          <Route path="/tags">
-            <Tags/>
-          </Route>
-          <Route path="/statistics">
-            <Statistics/>
-          </Route>
-          <Route path="/" component={Money} exact/>
-          <Route path="*">
-            <NoMatch/>
-          </Route>
-        </Switch>
-      </div>
+      <Wrapper>
+        <Main>
+          <Switch>
+            <Route path="/money">
+              <Money/>
+            </Route>
+            <Route path="/tags">
+              <Tags/>
+            </Route>
+            <Route path="/statistics">
+              <Statistics/>
+            </Route>
+            <Route path="/" component={Money} exact/>
+            <Route path="*">
+              <NoMatch/>
+            </Route>
+          </Switch>
+        </Main>
+        <Nav/>
+      </Wrapper>
     </Router>
   );
 }

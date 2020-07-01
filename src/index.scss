@@ -1,0 +1,24 @@
+@import "styles/helper.scss";
+
+@import-normalize ;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: $myFont;
+  line-height: 1.5;
+  font-size: 16px;
+}
