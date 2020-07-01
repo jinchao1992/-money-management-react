@@ -4,7 +4,10 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import Layout from './components/Layout';
+import Statistics from './views/Statistics';
+import Tags from './views/Tags';
+import Money from './views/Money';
+import NoMatch from './views/NoMatch';
 
 
 function App() {
@@ -26,36 +29,6 @@ function App() {
         </Route>
       </Switch>
     </Router>
-  );
-}
-
-function Money() {
-  return (
-    <Layout>
-      <h2>记账</h2>
-    </Layout>
-  );
-}
-
-function Tags() {
-  return (
-    <Layout>
-      <h2>标签</h2>
-    </Layout>
-  );
-}
-
-function Statistics() {
-  return (
-    <Layout>
-      <h2>统计</h2>
-    </Layout>
-  );
-}
-
-function NoMatch() {
-  return (
-    <div><h2>地址有误，请检查是否输入正确</h2></div>
   );
 }
 
