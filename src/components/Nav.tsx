@@ -5,6 +5,8 @@ import Icon from './Icon';
 
 const NavWrapper = styled.nav`
   text-align: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  background: #fff;
    > ul {
       display: flex;
       > li {
