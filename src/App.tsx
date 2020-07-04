@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Statistics from './views/Statistics';
 import Tags from './views/Tags';
-import Money from './views/Money';
+import Money from './views/money/Page';
 import NoMatch from './views/NoMatch';
 
 
