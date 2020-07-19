@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
@@ -27,10 +27,30 @@ const Wrapper = styled.ul`
 `;
 
 const CategorySection = () => {
+  const categoryMap = {
+    '-': '支出',
+    '+': '收入'
+  };
+
+  type Keys = keyof typeof categoryMap; // 获取某一个对象的类型
+
+  const [categoryList] = useState<Keys[]>(['-', '+']);
+  const [category, setCategory] = useState('-');
   return (
     <Wrapper>
-      <li className="tabs-item selected">支出</li>
-      <li className="tabs-item">收入</li>
+      {
+        categoryList.map(item => {
+          return (
+            <li
+              className={category === item ? 'tabs-item selected' : 'tabs-item'}
+              onClick={() => setCategory(item)}
+              key={item}
+            >
+              {categoryMap[item]}
+            </li>
+          );
+        })
+      }
     </Wrapper>
   );
 };
