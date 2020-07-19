@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -24,11 +24,20 @@ const Wrapper = styled.section`
 
 
 const NotesSection = () => {
+  const [note, setNote] = useState('');
+  const refInput = useRef<HTMLInputElement>(null);
+  const handleBlur = () => {
+    if (refInput.current) {
+      setNote(refInput.current.value);
+    }
+  };
   return (
     <Wrapper>
       <label className="notes">
         <span className="name">备注</span>
-        <input type="text" placeholder="在这里输入备注"/>
+        <input type="text" placeholder="在这里输入备注" defaultValue={note}
+               ref={refInput}
+               onBlur={handleBlur}/>
       </label>
     </Wrapper>
   );
