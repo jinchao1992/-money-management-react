@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
@@ -52,10 +52,42 @@ const Wrapper = styled.section`
   }
 `;
 const NumberPadSection: React.FC = () => {
+  const [output, setOutput] = useState<string>('0');
+  const handleButtonWrapper = (e: React.MouseEvent) => {
+    const text = (e.target as HTMLButtonElement).textContent;
+    if (!text) {return;}
+    switch (text) {
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        if (output === '0') {
+          setOutput(text);
+        } else {
+          setOutput(output + text);
+        }
+        break;
+      case '删除':
+        console.log(text);
+        break;
+      case '清空':
+        console.log(text);
+        break;
+      case 'ok':
+        console.log(text);
+        break;
+    }
+  };
   return (
     <Wrapper>
-      <div className="number">100</div>
-      <div className="buttons">
+      <div className="number">{output}</div>
+      <div className="buttons" onClick={handleButtonWrapper}>
         <button>1</button>
         <button>2</button>
         <button>3</button>
