@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-
 
 const Wrapper = styled.section`
   display: flex;
@@ -21,8 +20,12 @@ const Wrapper = styled.section`
       background: #d9d9d9;
       padding: 0 18px;
       margin-right: 24px;
-      margin-top: 5px;
+      margin-top: 10px;
       border-radius: 12px;
+      &.selected {
+        background: #ff6600;
+        color: #fff;
+      }
     }
   }
   > .new {
@@ -39,18 +42,48 @@ const Wrapper = styled.section`
 `;
 
 const TagsSection: React.FC = () => {
-  const [tags, setTags] = React.useState(['衣', '食', '住', '行']);
-
+  const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const onAddTag = () => {
+    const tagName = window.prompt('新标签的名称为：');
+    if (tagName === '') {
+      alert('标签不能为空');
+      return;
+    }
+    if (tagName) {
+      setTags([...tags, tagName]);
+    }
+  };
+  const onToggleTag = (tag: string) => {
+    const index = selectedTags.indexOf(tag);
+    // set 数据时需要返回一个新的数据，不要操作原来的数据
+    if (index >= 0) {
+      // 当前点击的元素是存在于 selectedTags 中
+      setSelectedTags(selectedTags.filter((item) => tag !== item));
+    } else {
+      setSelectedTags([...selectedTags, tag]);
+    }
+  };
+  const getClass = (tag: string) => {
+    return selectedTags.indexOf(tag) !== -1 ? 'selected' : '';
+  };
   return (
     <Wrapper>
       <ul className="current">
-        <li>衣</li>
-        <li>食</li>
-        <li>住</li>
-        <li>行</li>
+        {
+          tags.map(tag => {
+            return (
+              <li
+                key={tag}
+                onClick={() => onToggleTag(tag)}
+                className={getClass(tag)}
+              >{tag}</li>
+            );
+          })
+        }
       </ul>
       <div className="new">
-        <button>新增标签</button>
+        <button onClick={onAddTag}>新增标签</button>
       </div>
     </Wrapper>
   );
