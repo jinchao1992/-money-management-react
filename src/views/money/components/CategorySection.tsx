@@ -26,7 +26,7 @@ const Wrapper = styled.ul`
   }
 `;
 
-const CategorySection = () => {
+const CategorySection: React.FC = () => {
   const categoryMap = {
     '-': '支出',
     '+': '收入'

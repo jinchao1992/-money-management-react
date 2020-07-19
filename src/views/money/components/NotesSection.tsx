@@ -23,7 +23,7 @@ const Wrapper = styled.section`
 `;
 
 
-const NotesSection = () => {
+const NotesSection: React.FC = () => {
   const [note, setNote] = useState('');
   const refInput = useRef<HTMLInputElement>(null);
   const handleBlur = () => {

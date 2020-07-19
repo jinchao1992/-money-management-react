@@ -51,7 +51,7 @@ const Wrapper = styled.section`
     }
   }
 `;
-const NumberPadSection = () => {
+const NumberPadSection: React.FC = () => {
   return (
     <Wrapper>
       <div className="number">100</div>
