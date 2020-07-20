@@ -26,7 +26,11 @@ const Wrapper = styled.ul`
   }
 `;
 
-const CategorySection: React.FC = () => {
+type Props = {
+  value: string;
+  onChange: (newValue: '-' | '+') => void;
+}
+const CategorySection: React.FC<Props> = (props) => {
   const categoryMap = {
     '-': '支出',
     '+': '收入'
@@ -35,7 +39,7 @@ const CategorySection: React.FC = () => {
   type Keys = keyof typeof categoryMap; // 获取某一个对象的类型
 
   const [categoryList] = useState<Keys[]>(['-', '+']);
-  const [category, setCategory] = useState('-');
+  const category = props.value;
   return (
     <Wrapper>
       {
@@ -43,7 +47,7 @@ const CategorySection: React.FC = () => {
           return (
             <li
               className={category === item ? 'tabs-item selected' : 'tabs-item'}
-              onClick={() => setCategory(item)}
+              onClick={() => props.onChange(item)}
               key={item}
             >
               {categoryMap[item]}

@@ -41,9 +41,14 @@ const Wrapper = styled.section`
   }
 `;
 
-const TagsSection: React.FC = () => {
+type Props = {
+  value: string[];
+  onChange: (selected: string[]) => void;
+}
+
+const TagsSection: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const selectedTags = props.value;
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为：');
     if (tagName === '') {
@@ -59,9 +64,9 @@ const TagsSection: React.FC = () => {
     // set 数据时需要返回一个新的数据，不要操作原来的数据
     if (index >= 0) {
       // 当前点击的元素是存在于 selectedTags 中
-      setSelectedTags(selectedTags.filter((item) => tag !== item));
+      props.onChange(selectedTags.filter((item) => tag !== item));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      props.onChange([...selectedTags, tag]);
     }
   };
   const getClass = (tag: string) => {
