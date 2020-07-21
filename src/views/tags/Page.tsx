@@ -1,26 +1,28 @@
-import Layout from '../components/Layout';
+import Layout from './../../components/Layout';
 import React from 'react';
-import useTags from '../hooks/useTags';
+import useTags from '../../hooks/useTags';
 import styled from 'styled-components';
-import Icon from '../components/Icon';
+import Icon from './../../components/Icon';
+import { Link } from 'react-router-dom';
 
 const TagList = styled.ul`
   background-color: #fff;
   padding-left: 16px;
   
   > .tag {
-    padding: 16px 0 16px;
     font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     box-shadow: inset 0px -0.5px 0px #BCBBC1;
-
-    > .icon {
-      fill: #666;
-      width: 16px;
-      height: 16px;
-      margin-right: 16px;
+    > a {
+      padding: 16px 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      > .icon {
+        fill: #666;
+        width: 16px;
+        height: 16px;
+        margin-right: 16px;
+      }
     }
   }
 `;
@@ -53,8 +55,10 @@ function Tags() {
           tags.map((t: string) => {
             return (
               <li key={t} className="tag">
-                <span>{t}</span>
-                <Icon name="right"/>
+                <Link to={`/tags/${t}`}>
+                  <span>{t}</span>
+                  <Icon name="right"/>
+                </Link>
               </li>
             );
           })
