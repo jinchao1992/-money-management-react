@@ -52,11 +52,11 @@ function Tags() {
     <Layout>
       <TagList>
         {
-          tags.map((t: string) => {
+          tags.map((t) => {
             return (
-              <li key={t} className="tag">
-                <Link to={`/tags/${t}`}>
-                  <span>{t}</span>
+              <li key={t.id} className="tag">
+                <Link to={`/tags/${t.name}`}>
+                  <span>{t.name}</span>
                   <Icon name="right"/>
                 </Link>
               </li>

@@ -43,14 +43,13 @@ const Wrapper = styled.section`
 `;
 
 type Props = {
-  value: string[];
-  onChange: (selected: string[]) => void;
+  value: number[];
+  onChange: (selected: number[]) => void;
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-  // const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
   const { tags, setTags } = useTags();
-  const selectedTags = props.value;
+  const selectedTagIds = props.value;
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为：');
     if (tagName === '') {
@@ -58,21 +57,24 @@ const TagsSection: React.FC<Props> = (props) => {
       return;
     }
     if (tagName) {
-      setTags([...tags, tagName]);
+      setTags([...tags, {
+        id: Math.random(),
+        name: tagName
+      }]);
     }
   };
-  const onToggleTag = (tag: string) => {
-    const index = selectedTags.indexOf(tag);
+  const onToggleTag = (tagId: number) => {
+    const index = selectedTagIds.indexOf(tagId);
     // set 数据时需要返回一个新的数据，不要操作原来的数据
     if (index >= 0) {
       // 当前点击的元素是存在于 selectedTags 中
-      props.onChange(selectedTags.filter((item) => tag !== item));
+      props.onChange(selectedTagIds.filter((item) => tagId !== item));
     } else {
-      props.onChange([...selectedTags, tag]);
+      props.onChange([...selectedTagIds, tagId]);
     }
   };
-  const getClass = (tag: string) => {
-    return selectedTags.indexOf(tag) !== -1 ? 'selected' : '';
+  const getClass = (tagId: number) => {
+    return selectedTagIds.indexOf(tagId) !== -1 ? 'selected' : '';
   };
   return (
     <Wrapper>
@@ -81,10 +83,10 @@ const TagsSection: React.FC<Props> = (props) => {
           tags.map(tag => {
             return (
               <li
-                key={tag}
-                onClick={() => onToggleTag(tag)}
-                className={getClass(tag)}
-              >{tag}</li>
+                key={tag.id}
+                onClick={() => onToggleTag(tag.id)}
+                className={getClass(tag.id)}
+              >{tag.name}</li>
             );
           })
         }
