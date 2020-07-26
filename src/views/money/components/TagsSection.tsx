@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useTags from '../../../hooks/useTags';
+import { createId } from '../../../lib/createId';
 
 const Wrapper = styled.section`
   display: flex;
@@ -58,7 +59,7 @@ const TagsSection: React.FC<Props> = (props) => {
     }
     if (tagName) {
       setTags([...tags, {
-        id: Math.random(),
+        id: createId(),
         name: tagName
       }]);
     }
