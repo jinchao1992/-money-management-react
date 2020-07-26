@@ -25,9 +25,13 @@ const useTags = () => {
     id: number;
     name: string;
   }[]>(defaultTags);
+  const findTag = (id: number) => {
+    return tags.filter(t => t.id === id)[0];
+  };
   return {
     tags,
-    setTags
+    setTags,
+    findTag
   };
 };
 
