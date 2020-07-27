@@ -4,6 +4,7 @@ import useTags from '../../hooks/useTags';
 import styled from 'styled-components';
 import Icon from './../../components/Icon';
 import { Link } from 'react-router-dom';
+import Button from '../../components/Button';
 
 const TagList = styled.ul`
   background-color: #fff;
@@ -25,18 +26,6 @@ const TagList = styled.ul`
       }
     }
   }
-`;
-
-const Button = styled.button`
-  height: 40px;
-  padding: 0 16px;
-  margin-top: 44 - 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f60;
-  color: #fff;
-  font-size: 18px;
-  text-align: center;
 `;
 
 const Center = styled.div`
