@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
+import Input from '../../../components/Input';
 
 const Wrapper = styled.section`
   padding: 8px 0;
@@ -29,20 +30,18 @@ type Props = {
 
 const NotesSection: React.FC<Props> = (props) => {
   const note = props.value;
-  const refInput = useRef<HTMLInputElement>(null);
-  const handleBlur = () => {
-    if (refInput.current) {
-      props.onChange(refInput.current.value);
-    }
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    props.onChange(e.target.value);
   };
   return (
     <Wrapper>
-      <label className="notes">
-        <span className="name">备注</span>
-        <input type="text" placeholder="在这里输入备注" defaultValue={note}
-               ref={refInput}
-               onBlur={handleBlur}/>
-      </label>
+      <Input
+        label="备注"
+        type="text"
+        placeholder="在这里输入备注"
+        value={note}
+        onChange={handleChange}
+      />
     </Wrapper>
   );
 };
