@@ -7,6 +7,7 @@ import Layout from 'components/Layout';
 import Icon from '../../components/Icon';
 import Button from '../../components/Button';
 import styled from 'styled-components';
+import Input from '../../components/Input';
 
 const TopBar = styled.header`
   height: 48px;
@@ -27,26 +28,44 @@ const TopBar = styled.header`
   }
 `;
 
+const InputWrapper = styled.div`
+  background: #fff;
+  margin-top: 8px;
+`;
+
+const Center = styled.div`
+  text-align: center;
+  padding-top: 16px;
+  margin-top: 44px;
+`;
+
 const Tag = () => {
   const { findTag } = useTags();
   const { id } = useParams();
-  const filterTag = findTag(parseInt(id));
+  const tag = findTag(parseInt(id));
+
+  function handleChange() {
+    console.log('123');
+  }
+
   return (
     <Layout>
       <TopBar>
         <Icon name="left"/>
         <span>编辑标签</span>
       </TopBar>
-      <div className="form-item-wrapper">
-        <label className="notes">
-          <span className="name">备注</span>
-          <input type="text" placeholder="在这里输入备注"
-          />
-        </label>
-      </div>
-      <div className="btn-wrapper">
+      <InputWrapper>
+        <Input
+          label="标签名"
+          type="text"
+          placeholder="在这里输入标签名"
+          value={tag.name}
+          onChange={handleChange}
+        />
+      </InputWrapper>
+      <Center>
         <Button>删除标签</Button>
-      </div>
+      </Center>
     </Layout>
   )
     ;
