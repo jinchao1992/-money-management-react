@@ -28,24 +28,15 @@ const useTags = () => {
   const findTag = (id: number) => {
     return tags.filter(t => t.id === id)[0];
   };
-  const findIndexTag = (id: number) => {
-    return tags.findIndex((item) => {
-      return item.id === id;
-    });
-  };
   const editTag = (id: number, obj: {
     name: string
   }) => {
-    const index = findIndexTag(id);
-    const tagsClone = JSON.parse(JSON.stringify(tags));
-    tagsClone.splice(index, 1, { id, name: obj.name });
-    setTags(tagsClone);
+    setTags(tags.map(item => {
+      return item.id === id ? { id, name: obj.name } : item;
+    }));
   };
   const deleteTag = (id: number) => {
-    const index = findIndexTag(id);
-    const tagsClone = JSON.parse(JSON.stringify(tags));
-    tagsClone.splice(index, 1);
-    setTags(tagsClone);
+    setTags(tags.filter(item => item.id !== id));
   };
   return {
     tags,
