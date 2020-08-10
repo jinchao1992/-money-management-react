@@ -40,12 +40,14 @@ const Center = styled.div`
 `;
 
 const Tag = () => {
-  const { findTag } = useTags();
+  const { findTag, editTag } = useTags();
   const { id } = useParams();
   const tag = findTag(parseInt(id));
 
-  function handleChange() {
-    console.log('123');
+  function handleChange(e: any) {
+    editTag(tag.id, {
+      name: e.target.value
+    });
   }
 
   return (
