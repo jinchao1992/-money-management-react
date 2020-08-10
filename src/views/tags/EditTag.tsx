@@ -39,8 +39,15 @@ const Center = styled.div`
   margin-top: 44px;
 `;
 
+const NotDiv = styled.div`
+  font-size: 20px;
+  color: #f60;
+  text-align: center;
+  line-height: 100px;
+`;
+
 const Tag = () => {
-  const { findTag, editTag } = useTags();
+  const { findTag, editTag, deleteTag } = useTags();
   const { id } = useParams();
   const tag = findTag(parseInt(id));
 
@@ -50,24 +57,46 @@ const Tag = () => {
     });
   }
 
+  function onRemove() {
+    if (window.confirm('确定删除改标签吗？')) {
+      deleteTag(tag.id);
+    }
+  }
+
+  function tagContent(tag: {
+    id: number;
+    name: string
+  }) {
+    return (
+      <>
+        <InputWrapper>
+          <Input
+            label="标签名"
+            type="text"
+            placeholder="在这里输入标签名"
+            value={tag.name}
+            onChange={handleChange}
+          />
+        </InputWrapper>
+        <Center>
+          <Button onClick={onRemove}>删除标签</Button>
+        </Center>
+      </>
+    );
+  }
+
   return (
     <Layout>
       <TopBar>
         <Icon name="left"/>
         <span>编辑标签</span>
       </TopBar>
-      <InputWrapper>
-        <Input
-          label="标签名"
-          type="text"
-          placeholder="在这里输入标签名"
-          value={tag.name}
-          onChange={handleChange}
-        />
-      </InputWrapper>
-      <Center>
-        <Button>删除标签</Button>
-      </Center>
+      {
+        tag ? tagContent(tag) : (
+          <NotDiv>该标签不存在</NotDiv>
+        )
+      }
+
     </Layout>
   )
     ;
