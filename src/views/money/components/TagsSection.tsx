@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import useTags from '../../../hooks/useTags';
-import { createId } from '../../../lib/createId';
-
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -49,21 +47,8 @@ type Props = {
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-  const { tags, setTags } = useTags();
+  const { tags, addTag } = useTags();
   const selectedTagIds = props.value;
-  const onAddTag = () => {
-    const tagName = window.prompt('新标签的名称为：');
-    if (tagName === '') {
-      alert('标签不能为空');
-      return;
-    }
-    if (tagName) {
-      setTags([...tags, {
-        id: createId(),
-        name: tagName
-      }]);
-    }
-  };
   const onToggleTag = (tagId: number) => {
     const index = selectedTagIds.indexOf(tagId);
     // set 数据时需要返回一个新的数据，不要操作原来的数据
@@ -93,7 +78,7 @@ const TagsSection: React.FC<Props> = (props) => {
         }
       </ul>
       <div className="new">
-        <button onClick={onAddTag}>新增标签</button>
+        <button onClick={addTag}>新增标签</button>
       </div>
     </Wrapper>
   );

@@ -36,7 +36,7 @@ const Center = styled.div`
 `;
 
 function Tags() {
-  const { tags } = useTags();
+  const { tags, addTag } = useTags();
   return (
     <Layout>
       <TagList>
@@ -54,7 +54,7 @@ function Tags() {
         }
       </TagList>
       <Center>
-        <Button className="btn-wrapper">
+        <Button className="btn-wrapper" onClick={addTag}>
           添加标签
         </Button>
       </Center>
