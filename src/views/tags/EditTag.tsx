@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  useParams
+  useParams,
+  useHistory
 } from 'react-router-dom';
 import useTags from 'hooks/useTags';
 import Layout from 'components/Layout';
@@ -85,10 +86,13 @@ const Tag = () => {
     );
   }
 
+  const history = useHistory();
   return (
     <Layout>
       <TopBar>
-        <Icon name="left"/>
+        <Icon name="left" onClick={() => {
+          history.goBack();
+        }}/>
         <span>编辑标签</span>
       </TopBar>
       {

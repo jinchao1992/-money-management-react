@@ -7,13 +7,14 @@ try {
   console.log(err);
 }
 
-interface Prop {
-  name: string
+interface Props {
+  name?: string
+  onClick?: () => void;
 }
 
-const Icon = (props: Prop) => {
+const Icon = (props: Props) => {
   return (
-    <svg className="icon">
+    <svg className="icon" onClick={props.onClick}>
       <use xlinkHref={`#${props.name}`}/>
     </svg>
   );
