@@ -5,6 +5,7 @@ import generateOutput from './NumberPadSection/GenerateOutput';
 type Props = {
   value: number;
   onChange: (newValue: number) => void;
+  onOK: () => void;
 }
 
 const NumberPadSection: React.FC<Props> = (props) => {
@@ -25,7 +26,6 @@ const NumberPadSection: React.FC<Props> = (props) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (!text) {return;}
     if (text === 'ok') {
-      console.log('ok');
       return;
     }
     if ('0123456789.'.split('').concat(['删除', '清空']).indexOf(text) !== -1) {
@@ -47,7 +47,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
         <button>7</button>
         <button>8</button>
         <button>9</button>
-        <button className="ok">OK</button>
+        <button className="ok" onClick={props.onOK}>OK</button>
         <button className="zero">0</button>
         <button>.</button>
       </div>
