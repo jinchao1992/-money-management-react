@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Wrapper from './NumberPadSection/Wrapper';
 import generateOutput from './NumberPadSection/GenerateOutput';
 
@@ -9,7 +9,7 @@ type Props = {
 }
 
 const NumberPadSection: React.FC<Props> = (props) => {
-  const output = props.value.toString();
+  const [output, _setOutput] = useState(props.value.toString());
   const setOutput = (output: string) => {
     let value;
     if (output.length > 16) {
@@ -19,6 +19,7 @@ const NumberPadSection: React.FC<Props> = (props) => {
     } else {
       value = output;
     }
+    _setOutput(value);
     props.onChange(parseFloat(value));
   };
 
