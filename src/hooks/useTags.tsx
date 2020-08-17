@@ -63,13 +63,18 @@ const useTags = () => {
       }]);
     }
   };
+  const getName = (id: number) => {
+    const tag = tags.filter((tag) => tag.id === id)[0];
+    return tag ? tag.name : '';
+  };
   return {
     tags,
     addTag,
     setTags,
     findTag,
     editTag,
-    deleteTag
+    deleteTag,
+    getName
   };
 };
 

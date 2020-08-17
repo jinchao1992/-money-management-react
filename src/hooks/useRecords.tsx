@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useUpdate } from './useUpdate';
 
-interface RecordItem {
+export interface RecordItem {
   tagIds: number[];
   note: string;
   category: '+' | '-';
   amount: number;
+  createdAt: string;
 }
 
 export const useRecords = () => {
@@ -28,7 +29,8 @@ export const useRecords = () => {
       alert('请选择标签');
       return false;
     }
-    setRecords([...records, record]);
+    const newRecord = { ...record, createdAt: (new Date()).toISOString() };
+    setRecords([...records, newRecord]);
     return true;
   };
   return {

@@ -12,13 +12,18 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 
+const CategoryWrapper = styled.div`
+   background: #c4c4c4;
+`;
+
 type Category = '-' | '+';
 
 const defaultValue = {
   tagIds: [] as number[],
   note: '',
   category: '-' as Category,
-  amount: 0
+  amount: 0,
+  createdAt: ''
 };
 
 function Money() {
@@ -52,11 +57,13 @@ function Money() {
           note
         });
       }}/>
-      <CategorySection value={record.category} onChange={(category) => {
-        onChange({
-          category
-        });
-      }}/>
+      <CategoryWrapper>
+        <CategorySection value={record.category} onChange={(category) => {
+          onChange({
+            category
+          });
+        }}/>
+      </CategoryWrapper>
       <NumberPadSection value={record.amount} onChange={(amount) => {
         onChange({
           amount

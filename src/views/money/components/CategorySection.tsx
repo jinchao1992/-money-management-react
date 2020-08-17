@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Wrapper = styled.ul`
   display: flex;
-  background: #c4c4c4;
   
   > .tabs-item {
     width: 50%;
