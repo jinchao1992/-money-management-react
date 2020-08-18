@@ -28,7 +28,7 @@ const defaultValue = {
 
 function Money() {
   const [record, setRecord] = useState(defaultValue);
-  const { records, addRecord } = useRecords();
+  const { addRecord } = useRecords();
   const onChange = (obj: Partial<typeof record>) => {
     setRecord({
       ...record,

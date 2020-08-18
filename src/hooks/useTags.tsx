@@ -35,7 +35,7 @@ const useTags = () => {
 
   useUpdate(() => {
     localStorage.setItem('tags', JSON.stringify(tags));
-  }, [tags]);
+  }, tags);
 
   const findTag = (id: number) => {
     return tags.filter(t => t.id === id)[0];

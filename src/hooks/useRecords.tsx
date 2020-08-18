@@ -18,7 +18,7 @@ export const useRecords = () => {
 
   useUpdate(() => {
     localStorage.setItem('records', JSON.stringify(records));
-  }, [records]);
+  }, records);
 
   const addRecord = (record: RecordItem) => {
     if (record.amount <= 0) {
