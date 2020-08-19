@@ -4,8 +4,9 @@ import useTags from '../../../hooks/useTags';
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  flex-grow: 1;
+  //justify-content: flex-end;
+  flex: 1;
+  overflow: auto;
   padding: 16px;
   background: #fff;
   > .current {

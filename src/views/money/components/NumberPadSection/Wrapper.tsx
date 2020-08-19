@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Wrapper = styled.section`
-  > .number {
+  .number {
     background: #fff;
     font-size: 36px;
     color: #333;
@@ -10,7 +10,7 @@ const Wrapper = styled.section`
     height: 72px;
     box-shadow: inset 0px -5px 5px -5px rgba(0, 0, 0, 0.25);
   }
-  > .buttons {
+  .buttons {
     overflow: hidden;
     > button {
       float: left;
@@ -46,6 +46,17 @@ const Wrapper = styled.section`
       }
       &:nth-child(14) {
         background: #bfbfbf;
+      }
+    }
+  }
+  
+  @media(max-height: 570px) {
+    .buttons {
+      button {
+        height: 44px;
+        &.ok {
+          height: 88px;
+        }
       }
     }
   }

@@ -10,6 +10,8 @@ import { useRecords } from '../../hooks/useRecords';
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  flex: 1;
 `;
 
 const CategoryWrapper = styled.div`
