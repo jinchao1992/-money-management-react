@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import useTags from '../../../hooks/useTags';
+
 const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -9,6 +10,9 @@ const Wrapper = styled.section`
   overflow: auto;
   padding: 16px;
   background: #fff;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
   > .current {
     display: flex;
     flex-direction: row;
@@ -23,6 +27,7 @@ const Wrapper = styled.section`
       margin-right: 24px;
       margin-top: 10px;
       border-radius: 12px;
+      cursor: pointer;
       &.selected {
         background: #ff6600;
         color: #fff;
